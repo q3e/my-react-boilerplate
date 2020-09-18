@@ -1,35 +1,49 @@
 import React, { ReactNode } from 'react'
-import { render as rtlRender } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import reducer from './redux/reducers'
+import { Router } from 'react-router-dom'
+import { createMemoryHistory } from 'history'
 
-const initialState: Coin[] = [
-  {
-    name: 'ShitCoin',
-  },
-]
+import reducer from './redux/reducers'
 
 interface Coin {
   [key: string]: any
 }
 
-const render = (
-  ui: JSX.Element,
+const customRender = (
+  ui: React.ReactNode,
   {
     initialState,
     store = createStore(reducer, initialState),
-    ...renderOptions
-  }: // TODO: ideal type should be something like { initialState: InitialState; store: Store; [key: string]: any } - NOT any
-  any,
+    route = '/',
+    history = createMemoryHistory({ initialEntries: [route] }),
+  }: any = {},
 ) => {
-  const Wrapper = ({ children }: { children: ReactNode }) => (
-    <Provider store={store}>{children}</Provider>
-  )
-  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions })
+  return {
+    ...render(
+      <Provider store={store}>
+        <Router history={history}>{ui}</Router>
+      </Provider>,
+    ),
+    store,
+    history,
+  }
 }
 
+const renderWithRouter = (
+  ui: JSX.Element,
+  { route = '/', history = createMemoryHistory() }: any = {},
+) => {
+  const Wrapper = ({ children }: { children: ReactNode }) => (
+    <Router history={history}>{children}</Router>
+  )
+  return {
+    ...render(ui, { wrapper: Wrapper }),
+    history,
+  }
+}
 // re-export all of RTL
 export * from '@testing-library/react'
 // override render method
-export { render }
+export { customRender as render, renderWithRouter }

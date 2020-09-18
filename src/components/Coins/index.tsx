@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { getCoins } from '../redux/actions'
+import { getCoins } from '../../redux/actions'
 
 const Coins: any = (props: { getCoins: (arg0: string) => void }) => {
   useEffect(() => {

@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { render, screen } from '../test-utils'
+import { render, screen } from '../../test-utils'
 
-import CoinsContainer from './Coins'
+import CoinsContainer from '.'
 
 describe('Coins Component:', () => {
   it('Renders the connected app with initialState', () => {
