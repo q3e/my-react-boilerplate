@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 
+import Title from './styled'
 import { getCoins } from '../../redux/actions'
 
 const Coins: any = (props: { getCoins: (arg0: string) => void }) => {
@@ -12,7 +13,7 @@ const Coins: any = (props: { getCoins: (arg0: string) => void }) => {
 
   return (
     <>
-      <h2>All coins</h2>
+      <Title>All coins</Title>
     </>
   )
 }

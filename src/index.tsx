@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 import rootSaga from './redux/sagas'
 
-import './index.css'
+import './assets/main.css'
 import App from './components/App'
 import * as serviceWorker from './serviceWorker'
 

@@ -39,6 +39,8 @@ const renderWithRouter = (
     <Router history={history}>{children}</Router>
   )
   return {
+    // TODO: Fix bad typing
+    // @ts-ignore
     ...render(ui, { wrapper: Wrapper }),
     history,
   }
