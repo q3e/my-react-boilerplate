@@ -1,20 +1,28 @@
-import React from 'react'
-import { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import ReactPaginate from 'react-paginate'
 import { connect } from 'react-redux'
 
 import Coins from './Coins'
 import { getCoins } from '../../redux/actions'
 
-const CoinsContainer: any = (props: {
-  getCoins: () => void
-  coins: any[][]
-  loading: boolean
-}) => {
+const CoinsContainer: any = (props: any) => {
+  const [pageCount, setPageCount] = useState(1)
+  const handlePrevious = () => {
+    if (pageCount > 1) {
+      setPageCount(pageCount - 1)
+    }
+  }
+  const handleNext = () => {
+    setPageCount(pageCount + 1)
+  }
+
   useEffect(() => {
-    props.getCoins()
+    const start = (pageCount * 20 + 1 - 20).toString()
+    const limit = (20).toString()
+    props.getCoins(start, limit)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [pageCount])
 
   if (props.loading) {
     return (
@@ -23,7 +31,26 @@ const CoinsContainer: any = (props: {
       </div>
     )
   }
-  return <Coins {...props} />
+  return (
+    <>
+      <Coins {...props} />
+
+      <div className="flex justify-end">
+        <button
+          onClick={handlePrevious}
+          className="mr-4 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+        >
+          {'<<'}
+        </button>
+        <button
+          onClick={handleNext}
+          className="ml-4 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+        >
+          {'>>'}
+        </button>
+      </div>
+    </>
+  )
 }
 
 const mapStateToProps = (state: {

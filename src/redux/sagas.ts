@@ -1,10 +1,10 @@
 import { put, takeLatest, all } from "redux-saga/effects";
 import api from "../api";
 
-function* fetchCoins() {
+function* fetchCoins(action: { start: string; limit: string }) {
   try {
     let response = yield api
-      .fetchCoins()
+      .fetchCoins(action.start, action.limit)
       .then((res) => {
         return res.body.data;
       })
@@ -40,6 +40,7 @@ function* fetchCoinDetails(action: { slug: string }) {
 }
 
 function* actionWatcher() {
+  // @ts-ignore
   yield takeLatest("GET_COINS_REQUESTED", fetchCoins);
   // @ts-ignore
   yield takeLatest("GET_COIN_DETAILS_REQUESTED", fetchCoinDetails);

@@ -7,7 +7,7 @@ import Title from './styled'
 
 const Coins = (props: { coins: any[][] }) => {
   return (
-    <>
+    <div className="container mx-auto">
       <Title>All coins</Title>
       <table className="w-full text-left table-collapse">
         <thead>
@@ -71,7 +71,7 @@ const Coins = (props: { coins: any[][] }) => {
             })}
         </tbody>
       </table>
-    </>
+    </div>
   )
 }
 

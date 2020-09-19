@@ -9,9 +9,9 @@ const listingsEndpoint =
 const infoEndpoint = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/info'
 
 export default {
-  fetchCoins() {
+  fetchCoins(start: string, limit: string) {
     return superagent
-      .get(proxyUrl + listingsEndpoint)
+      .get(proxyUrl + listingsEndpoint + `?start=${start}&limit=${limit}`)
       .set({ 'X-CMC_PRO_API_KEY': process.env.REACT_APP_CMC_API_KEY })
       .set('accept', 'json')
   },

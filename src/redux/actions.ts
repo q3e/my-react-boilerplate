@@ -1,5 +1,7 @@
-export const getCoins = () => ({
+export const getCoins = (start: string, limit: string) => ({
   type: "GET_COINS_REQUESTED",
+  start,
+  limit,
 });
 
 export const getCoinDetails = (slug: string) => ({
