@@ -21,7 +21,7 @@ const Coin = (props: any) => {
           className="m-10 flex align-items-center justify-center"
         >
           <ul className="list-disc">
-            <img src={coin.logo} />
+            <img src={coin.logo} alt={`${coin.name} logo`} />
             <li>Name: {coin.name}</li>
             <li>Symbol: {coin.symbol}</li>
             <li>
