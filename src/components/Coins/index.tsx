@@ -12,7 +12,6 @@ const CoinsContainer: any = (props: {
 }) => {
   useEffect(() => {
     props.getCoins()
-    console.log('props coins::', props.coins)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -24,13 +23,14 @@ const CoinsContainer: any = (props: {
       </div>
     )
   }
-  console.log('props coins::', props.coins)
   return <Coins {...props} />
 }
 
-const mapStateToProps = (state: { coins: any; loading: boolean }) => ({
-  coins: state.coins,
-  loading: state.loading,
+const mapStateToProps = (state: {
+  coinsReducer: { coins: any; loading: any }
+}) => ({
+  coins: state.coinsReducer.coins,
+  loading: state.coinsReducer.loading,
 })
 
 const mapDispatchToProps = {

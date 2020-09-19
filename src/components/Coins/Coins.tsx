@@ -1,11 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 import _isEmpty from 'lodash/isEmpty'
 
 import Title from './styled'
 
 const Coins = (props: { coins: any[][] }) => {
-  console.log('coins props', props.coins)
-
   return (
     <>
       <Title>All coins</Title>
@@ -36,7 +36,9 @@ const Coins = (props: { coins: any[][] }) => {
             props.coins.map((coin: { [key: string]: any }, index: number) => {
               return (
                 <tr key={index + coin.quote.USD.market_cap}>
-                  <td className="p-2 whitespace-no-wrap">{coin.name}</td>
+                  <td className="p-2 whitespace-no-wrap">
+                    <Link to={`coin/${coin.slug}`}>{coin.name}</Link>
+                  </td>
                   <td className="p-2 whitespace-no-wrap">
                     {coin.quote.USD.market_cap.toLocaleString('us-US', {
                       style: 'currency',

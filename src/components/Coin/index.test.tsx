@@ -3,7 +3,7 @@ import { Router, Route } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
 
 import { render } from '../../test-utils'
-import Coin from '.'
+import Coin from './Coin'
 
 test('rendering a component that uses withRouter', () => {
   const history = createMemoryHistory()

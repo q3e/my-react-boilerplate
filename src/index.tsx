@@ -11,12 +11,12 @@ import * as serviceWorker from './serviceWorker'
 
 import { Provider } from 'react-redux'
 import { applyMiddleware, createStore } from 'redux'
-import coinsReducer from './redux/reducers'
+import reducers from './redux/reducers'
 
 const sagaMiddleware = createSagaMiddleware()
 
 const store = createStore(
-  coinsReducer,
+  reducers,
   composeWithDevTools(applyMiddleware(sagaMiddleware)),
 )
 
