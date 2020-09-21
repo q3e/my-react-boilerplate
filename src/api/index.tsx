@@ -2,7 +2,7 @@ import superagent from 'superagent'
 // import prefixUrl from 'superagent-prefix'
 
 //  proxy requests to by-pass CORS
-const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
+const proxyUrl = 'https://my-cors-bypass.herokuapp.com/'
 
 const listingsEndpoint =
   'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
